@@ -1,16 +1,31 @@
-.signup-container{
+.signup-container {
     /* border:1px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8rem;
+    margin-top: 5rem;
     text-align: center;
-
+    flex-direction: column;
 }
 
-.signup-card{
-    width:25rem;
-    height:25rem;
+.signup-card {
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+    height: 27rem;
     border: 1px solid #ccc;
     padding: 1rem;
+}
+
+.bottom-card {
+    /* width: 20rem; */
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.tnc {
+    /* width: 20rem; */
+    margin-top: 1rem;
+    color: gray;
 }
