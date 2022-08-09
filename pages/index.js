@@ -1,8 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Feeds from '../Components/Feeds.js'
-
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Feeds from "../components/Feeds";
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,5 +12,5 @@ export default function Home() {
       </Head>
       <Feeds />
     </div>
-  )
+  );
 }
