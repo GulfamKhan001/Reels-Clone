@@ -30,9 +30,9 @@ function index() {
     }
     catch (err) {
       console.log("error ", JSON.stringify(err));
-      let errr = err.code.split("/");
+      // let errr = err.code.split("/");
       
-      setError(errr[1]);
+      setError(err.code.split("/")[1]);
       // use settimeout to remove error after 2sec
       setTimeout(() => {
         setError('');
