@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React, { useContext, useEffect } from 'react'
 import TextField from "@mui/material/TextField";
 import Image from "next/image"
 import logo from '../../assets/Instagram.jpg'
@@ -9,20 +9,28 @@ import bg2 from '../../assets/bg2.jpg'
 import bg3 from '../../assets/bg3.jpg'
 import bg4 from '../../assets/bg4.jpg'
 import bg5 from '../../assets/bg5.jpg'
-import {AuthContext} from '../../context/auth'
-
+import { AuthContext } from '../../context/auth'
+import { useRouter } from "next/router";
+import Link from 'next/link'
 function index() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const router = useRouter();
+  const { login, user } = useContext(AuthContext);
 
-  const { login } = useContext(AuthContext);
+  useEffect(() => {
+    if (user) {
+      //route to feeds page
+      router.push("/");
 
-  let handleClick = async() => {
+    }
+  }, [user])
+  let handleClick = async () => {
     try {
-      console.log(email);
-      console.log(password);
+      // console.log(email);
+      // console.log(password);
       setLoading(true);
       setError('');
       await login(email, password);
@@ -31,7 +39,7 @@ function index() {
     catch (err) {
       console.log("error ", JSON.stringify(err));
       // let errr = err.code.split("/");
-      
+
       setError(err.code.split("/")[1]);
       // use settimeout to remove error after 2sec
       setTimeout(() => {
@@ -49,17 +57,17 @@ function index() {
             interval={2000}
             infiniteLoop
             showArrows={false}
-            showThumbs= {false}
+            showThumbs={false}
             showIndicators={false}
             stopOnHover
             showStatus={false}
-            // thumbWidth={5}
+          // thumbWidth={5}
           >
-            <Image src={bg1} width="211" height="375"/>
-            <Image src={bg2} width="211" height="375"/>
-            <Image src={bg3} width="211" height="375"/>
-            <Image src={bg4} width="211" height="375"/>
-            <Image src={bg5} width="211" height="375"/>
+            <Image src={bg1} width="211" height="375" />
+            <Image src={bg2} width="211" height="375" />
+            <Image src={bg3} width="211" height="375" />
+            <Image src={bg4} width="211" height="375" />
+            <Image src={bg5} width="211" height="375" />
           </Carousel>
         </div>
       </div>
@@ -73,7 +81,7 @@ function index() {
             variant="outlined"
             fullWidth
             margin="dense"
-            value= {email}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
@@ -84,14 +92,16 @@ function index() {
             fullWidth
             margin="dense"
             type="password"
-            value= {password}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          { error != "" && <div style={{color : "red"}}>{error}</div>}
-          
-          <div style={{ color: "blue", marginTop: "0.5rem" }}>
-            Forget Password
-          </div>
+          {error != "" && <div style={{ color: "red" }}>{error}</div>}
+
+          <Link href="/forgot">
+            <div style={{ color: "blue", marginTop: "0.5rem" }}>
+              Forget Password{" "}
+            </div>
+          </Link>
 
           <Button
             style={{ marginTop: "1rem" }}
@@ -99,13 +109,16 @@ function index() {
             component="label"
             fullWidth
             onClick={handleClick}
+            disabled={loading}
           >
             Log in
           </Button>
         </div>
         <div className="bottom-card">
           Don't Have an account ?{" "}
-          <span style={{ color: "blueviolet" }}>Signup</span>
+          <Link href="/signup">
+            <span style={{ color: "blueviolet" }}>Signup</span>
+          </Link>
         </div>
       </div>
     </div>

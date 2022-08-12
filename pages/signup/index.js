@@ -5,7 +5,7 @@ import logo from '../../assets/Instagram.jpg'
 import Button from '@mui/material/Button';
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { IconButton } from '@mui/material';
-
+import Link from 'next/link'
 function index() {
   return (
     <div className="signup-container">
@@ -59,7 +59,9 @@ function index() {
 
       <div className="bottom-card" style={{ width: "20rem" }} >
         Already Have an account ?{" "}
-        <span style={{ color: "blueviolet" }}>Login</span>
+        <Link href='/login'>
+          <span style={{ color: "blueviolet" }}>Login</span>
+        </Link>
       </div>
     </div>
   );
