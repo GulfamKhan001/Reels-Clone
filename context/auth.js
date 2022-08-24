@@ -1,4 +1,4 @@
-import { onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import React, { useState, useEffect } from 'react'
 import { auth } from "../firebase";
 export const AuthContext = React.createContext();
@@ -11,9 +11,8 @@ function AuthWrapper({ children }) {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             console.log("onAuthStateChanged called");
-            if (user) {
                 setUser(user);
-            }
+            
         })
         setLoading(false);
     }, [])
@@ -28,12 +27,17 @@ function AuthWrapper({ children }) {
     function forgetPassword(email) {
         return sendPasswordResetEmail(auth, email);
     }
+
+    function signup(email, password) {
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
     const store = {
         login,
         user,
         logout,
         forgetPassword,
-    }
+        signup,
+    };
     return (
         <AuthContext.Provider value={store}>
             {!loading && children}
