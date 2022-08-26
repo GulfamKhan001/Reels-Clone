@@ -61,8 +61,8 @@ function index() {
           });
         }
       );
-      console.log("user sugned up");
-    }
+      console.log("user signed up");
+    }  
     catch (err) {
       console.log("err", err);
       setError(err.code);
