@@ -8,8 +8,9 @@ import { IconButton } from '@mui/material';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth';
-import { storage } from "../../firebase";
+import { storage , db} from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from 'firebase/firestore';
 
 
 function index() {
@@ -54,10 +55,20 @@ function index() {
           // https://firebase.google.com/docs/storage/web/handle-errors
           console.log(error);
         },
-        () => {
+         () => {
           // Upload completed successfully, now we can get the download URL
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log("File available at", downloadURL);
+            let userData = {
+              fullName,
+              email,
+              password,
+              downloadURL,
+              uid: userInfo.user.uid,
+            };
+
+            await setDoc(doc(db, "users", userInfo.user.uid), userData);
+            console.log("doc added to db");
           });
         }
       );
