@@ -1,14 +1,18 @@
+*{
+    overflow-y: hidden;
+}
 .feed-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .navbar{
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    color: rgb(244, 244, 244);
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -26,14 +30,16 @@
 
 .upload-btn{
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .videos-container{
     height: 80vh;
     /* border: 1px solid black; */
-    border-radius: 15px;
+    /* border-radius: 15px; */
     scrollbar-width: 0;
     overflow-y: scroll;
+    width: 100vw;
 
 }
 
@@ -41,27 +47,32 @@
     display: none;
 }
 .post-container{
-    height: 100%;
-    width:20rem;
-    margin-bottom: 0.6rem;
-    margin-top: 1rem;
+    border: 1px solid rgb(129, 129, 129);
+    border-radius: 15px;
+    /* height: 100%; */
+    object-fit: contain;
+    left: calc(50% - 10rem);
+    width:fit-content;
+    margin-bottom: 1rem;
+    /* margin-top: 1rem; */
+    position: relative;
 }
 
 .post-container>video{
     height: 100%;
     width:20rem;
     object-fit: contain;
-    /* background-color: lightpink; */
-    border-radius: 15px;
-    position: relative;
+    background-color: black;
+    /* border-radius: 15px; */
 }
 
-.video-info{
-    position: absolute;
-    width: 20rem;
-    display: flex;
-    justify-content: space-around;
-    bottom: 55px;
+.videos-info{
+    /* position: absolute; */
+    /* width: 100%; */
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* bottom: 55px; */
+    margin: 0.5rem 0.5rem;
 
 }
 
@@ -75,10 +86,35 @@
     margin-left: 0.2rem;
 }
 
+.like{
+    margin-right: 0.2rem;
+    font-size: large;
+}
+.comment{
+    margin-left: 0.2rem;
+}
 .post-like{
-    width: 20%;
     display: flex;
-    flex-direction: column;
+    
+}
+.postlike-Count{
+    font-weight: 500;
+    margin-left: 0.2rem;
+}
+.modal-container{
+    display: flex;
+    height:100%;
+    width: 100%;
+}
+
+.video-modal{
+    height: 100%;
+    width:50%;
+}
+
+.comments-modal{
+    height: 100%;
+    width:50%;
 }
 
 

@@ -22,6 +22,11 @@ function index() {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const { signup, user } = useContext(AuthContext);
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
 
   let handleClick = async() => {
     console.log(email);

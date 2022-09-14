@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import MovieIcon from "@mui/icons-material/Movie";
 import Alert from "@mui/material/Alert";
 import { v4 as uuidv4 } from "uuid";
-import { addDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { addDoc, arrayUnion, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage, db } from "../firebase";
 
@@ -58,7 +58,7 @@ function Upload({ userData }) {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           console.log("File available at", downloadURL);
-          let postObj = {
+          let post = {
             likes: [],
             postId: uid,
             postURL: downloadURL,
@@ -68,12 +68,17 @@ function Upload({ userData }) {
             timestamp: serverTimestamp(),
           }
 
-          console.log("post", postObj);
-          await setDoc(doc(db, "posts", uid), postObj);
+          console.log("post", post);
+          await setDoc(doc(db, "posts", uid), post);
           console.log("posts added to post collection");
           // db,collection name, document name
           // await setDoc(doc(db, "users", userInfo.user.uid), userData);
           // console.log("doc added to db");
+          //update in users, posts ka arr 
+          await updateDoc(doc(db, "users", userData.uid), {
+            posts: arrayUnion(uid),
+          });
+          console.log("posts array added to user doc");
           setLoading(false);
 
         });
