@@ -34,14 +34,14 @@ function Profile() {
   return (
     <div>
       <Navbar userData={userData}/>
-      <div>
+      <div className="profile">
         <div className="profile-intro">
-          <div style={{height:"8rem", width:"8rem",clipPath: "circle(50%)"}}>
-            <Image layout="fill" src={userData.downloadURL} />
+          <div className= "profile-Pic" style={{height:"8rem", width:"8rem",clipPath: "circle(50%)"}}>
+            <Image layout="fill" src={userData.downloadURL}/>
           </div>
           <div>
             <h1>{userData.fullName}</h1>
-            <h1>Posts:{userData.posts?.length}</h1>
+            <h1>Posts: {userData.posts?.length}</h1>
           </div>   
         </div>
         <hr />

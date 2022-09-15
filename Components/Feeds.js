@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Upload from "./Upload";
-import Avatar from "@mui/material/Avatar";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from '../context/auth';
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -40,7 +38,7 @@ function Feed() {
       <Upload userData={userData}/>
       <div className="videos-container">
       {
-          posts.map((post) => <Post postData={post} userData = { user } />)
+          posts.map((post) => <Post postData={post} userData = { userData } />)
         }
       </div>
     </div>

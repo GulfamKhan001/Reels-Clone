@@ -14,7 +14,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions } from '@mui/material';
+import { CardActionArea, CardActions } from '@mui/material'
+import DisplayComments from './DisplayComments'
+import Comment from './Comment';
 
 function Post({ postData, userData }) {
     // console.log("123456",postData);
@@ -61,7 +63,7 @@ function Post({ postData, userData }) {
                     src={postData.profilePhotoURL}
                     sx={{ margin: "0.5rem" }}
                 />
-                <p style={{ color: "black" }}>{postData.profileName}</p>
+                <p style={{ color: "black", fontWeight: "500" }}>{postData.profileName}</p>
             </div>
             <video src={postData.postURL} />
             <div className="videos-info">
@@ -77,62 +79,36 @@ function Post({ postData, userData }) {
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                         fullWidth={true}
-                        maxWidth="md"
+                        maxWidth="sm"
                     >
                         <div className="modal-container">
                             <div className="video-modal">
-                                <video src={postData.postURL} />
+                                <video autoPlay muted controls src={postData.postURL} />
                             </div>
                             <div className="comments-modal">
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardActionArea>
-                                        <CardMedia
-                                            component="img"
-                                            height="140"
-                                            image={postData.profilePhotoURL}
-                                            alt="green iguana"
-                                        />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Lizard
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Lizards are a widespread group of squamate reptiles,
-                                                with over 6,000 species, ranging across all continents
-                                                except Antarctica
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            Share
-                                        </Button>
-                                    </CardActions>
+                                <Card className="card1">
+                                {/* <DisplayComments postData={postData} /> */}
                                 </Card>
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardActionArea>
-                                        <CardMedia
-                                            component="img"
-                                            height="140"
-                                            image={postData.profilePhotoURL}
-                                            alt="green iguana"
+                                <Card className="card2">
+                                    <Typography
+                                        sx={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                        }}
+                                    >
+                                        {postData.likes.length == 0
+                                            ? "Be the first one to like this post"
+                                            : `Liked by ${postData.likes.length} users`}
+                                    </Typography>
+                                    {/* heart */}
+                                    <div className="post-like2">
+                                        <FavoriteBorderOutlinedIcon
+                                            style={like ? { color: "red" } : { color: "black" }}
+                                            onClick={handleLike}
                                         />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                Lizard
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Lizards are a widespread group of squamate reptiles,
-                                                with over 6,000 species, ranging across all continents
-                                                except Antarctica
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            Share
-                                        </Button>
-                                    </CardActions>
+                                        <Comment userData={userData} postData={postData} />
+                                    </div>
                                 </Card>
                             </div>
                         </div>

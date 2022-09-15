@@ -1,6 +1,6 @@
-*{
+/* *{
     overflow-y: hidden;
-}
+} */
 .feed-container{
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@
     border-radius: 15px;
     /* height: 100%; */
     object-fit: contain;
-    left: calc(50% - 10rem);
+    left: calc(50% - 15rem);
     width:fit-content;
     margin-bottom: 1rem;
     /* margin-top: 1rem; */
@@ -60,7 +60,7 @@
 
 .post-container>video{
     height: 100%;
-    width:20rem;
+    width:30rem;
     object-fit: contain;
     background-color: black;
     /* border-radius: 15px; */
@@ -75,6 +75,8 @@
     margin: 0.5rem 0.5rem;
 
 }
+
+
 
 .avatar-container{
     display: flex;
@@ -108,13 +110,38 @@
 }
 
 .video-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: vh; */
+    /* width: 80vw; */
+    object-fit: contain;
+}
+.video-modal>video{
+    /* align-items: center; */
     height: 100%;
-    width:50%;
+    width:100%;
+    
 }
 
 .comments-modal{
     height: 100%;
-    width:50%;
+    width:100%;
+    /* width: 30vw; */
+}
+
+.post-like2{
+    /* width: 20%; */
+    display: flex;
+    
+    /* justify-content: center; */
+    align-items: center;
+    /* height: 3rem; */
+
+}
+
+.card1{
+    height: 70vh;
 }
 
 
