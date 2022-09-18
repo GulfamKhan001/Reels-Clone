@@ -1,4 +1,6 @@
-
+*::-webkit-scrollbar{
+    display: none;
+}
 .profile-intro{
     display: flex;
     justify-content: space-evenly;
