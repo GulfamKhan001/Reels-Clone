@@ -32,6 +32,37 @@ function Feed() {
       unsub();
     };
   }, []);
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      let ele = entry.target.childNodes[1];
+      console.log(ele);
+      ele.play().then(() => {
+        if (!ele.paused && !entry.isIntersecting) {
+          console.log("123",entry.isIntersecting);
+          ele.pause();
+        }
+      })
+    })
+  }
+
+  let options = {
+    // root: document.querySelector("#scrollArea"),
+    // rootMargin: "0px",
+    threshold: 0.5
+  };
+  let observer = new IntersectionObserver(callback, options);
+  useEffect(() => {
+    const elements = document.querySelectorAll(".videos-container");
+    let elem=elements[0].childNodes;
+    console.log("Hyee",elements);
+    elem.forEach((e) => { console.log("hello",e.childNodes[1]);
+      observer.observe(e); 
+    });
+    //cleanup 
+    return () => {
+      observer.disconnect();
+    };
+  },[])
   return (
     <div className="feed-container">
       <Navbar userData={userData}/>

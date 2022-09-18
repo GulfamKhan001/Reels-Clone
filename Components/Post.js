@@ -17,10 +17,12 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material'
 import DisplayComments from './DisplayComments'
 import Comment from './Comment';
+import * as ReactDOM from 'react-dom';
 
 function Post({ postData, userData }) {
     // console.log("123456",postData);
     const [like, setLike] = useState(false);
+    const [isMute, setIsMute] = useState(true);
     // heart red -> jab logged in user ne like kia hta h 
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -54,6 +56,21 @@ function Post({ postData, userData }) {
             })
         }
     }
+    const handleMute = () => {
+        if (isMute) {
+            setIsMute(false);
+        }
+        else setIsMute(true);
+    }
+
+    const handleNextVideo = (e) => {
+        //get the next video 
+        let nextVideo = ReactDOM.findDOMNode(e.target).parentNode.nextSibling;
+        if (nextVideo) {
+
+            nextVideo.scrollIntoView({ behavior: "smooth" });
+        }
+    }
 
     return (
         <div className="post-container">
@@ -65,7 +82,10 @@ function Post({ postData, userData }) {
                 />
                 <p style={{ color: "black", fontWeight: "500" }}>{postData.profileName}</p>
             </div>
-            <video src={postData.postURL} />
+            <video muted={isMute}
+                onClick={handleMute}
+                onEnded={handleNextVideo}
+                src={postData.postURL} />
             <div className="videos-info">
                 <div className="post-like" >
                     <FavoriteBorderOutlinedIcon className="like" onClick={handleLike} style={like ? { color: "red" } : { color: "black" }} />
@@ -83,11 +103,11 @@ function Post({ postData, userData }) {
                     >
                         <div className="modal-container">
                             <div className="video-modal">
-                                <video autoPlay muted controls src={postData.postURL} />
+                                <video autoPlay muted src={postData.postURL} />
                             </div>
                             <div className="comments-modal">
-                                <Card className="card1">
-                                {/* <DisplayComments postData={postData} /> */}
+                                <Card className="card1" style={{ overflowY: 'scroll', scrollbarWidth: '0px' }}>
+                                    <DisplayComments postData={postData} />
                                 </Card>
                                 <Card className="card2">
                                     <Typography

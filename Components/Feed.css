@@ -1,6 +1,6 @@
-/* *{
-    overflow-y: hidden;
-} */
+*{
+    overflow-x: hidden;
+}
 .feed-container{
     display: flex;
     justify-content: center;
@@ -40,7 +40,7 @@
     scrollbar-width: 0;
     overflow-y: scroll;
     width: 100vw;
-
+    scroll-snap-type: y mandatory;
 }
 
 .videos-container::-webkit-scrollbar{
@@ -51,16 +51,17 @@
     border-radius: 15px;
     /* height: 100%; */
     object-fit: contain;
-    left: calc(50% - 15rem);
+    left: calc(50% - 10rem);
     width:fit-content;
     margin-bottom: 1rem;
     /* margin-top: 1rem; */
     position: relative;
+    scroll-snap-align: start;
 }
 
 .post-container>video{
     height: 100%;
-    width:30rem;
+    width:20rem;
     object-fit: contain;
     background-color: black;
     /* border-radius: 15px; */
@@ -137,11 +138,15 @@
     /* justify-content: center; */
     align-items: center;
     /* height: 3rem; */
+    /* margin-top: 3rem; */
 
 }
 
 .card1{
-    height: 70vh;
+    height: 79vh;
+}
+.card1::-webkit-scrollbar{
+    display: none;
 }
 
 
