@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Feeds from "../components/Feeds";
+import Feeds from "../Components/Feeds";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth";
