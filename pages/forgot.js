@@ -11,7 +11,7 @@ import bg4 from "../assets/bg4.jpg";
 import bg5 from "../assets/bg5.jpg";
 import { AuthContext } from "../context/auth";
 import { useRouter } from "next/router";
-import Link from 'next/link'
+import Link from "next/link"
 
 function Forgot() {
   const [email, setEmail] = React.useState("");
