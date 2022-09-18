@@ -6,9 +6,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This app is created using combination of class and function components.
 
-* Project depects the Instagram Reels, Built using NextJS .  
-* Firebase has been used for the backend purposes i.e Storage, Authenticate.  
-* Firestore has been used for storing user data. Login credential is checked using Authenticate of Firebase.  
+* The project depicts the Instagram Reels, Built using NextJS.  
+* Firebase has been used for backend purposes i.e Storage, Authenticate. 
+* Firestore database have been used for storing user data. The login credential is checked using Authenticate of Firebase.
 
 
 ### Features
