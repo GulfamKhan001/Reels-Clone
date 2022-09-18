@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import insta from '../assets/instagram.svg'
+import insta from '../assets/Instagram.svg'
 import Image from 'next/image'
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from '@mui/icons-material/Add';
