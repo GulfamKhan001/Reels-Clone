@@ -6,6 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 import { addDoc, arrayUnion, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage, db } from "../firebase";
+import AddIcon from '@mui/icons-material/Add';
+import CircularProgress from '@mui/material/CircularProgress';
+import Error from './Error';
+import Progress from './Progress';
 
 function Upload({ userData }) {
   const [loading, setLoading] = useState(false);
@@ -16,15 +20,15 @@ function Upload({ userData }) {
     const file = e.target.files[0];
     console.log(file);
     if (file == null) {
-      setError("file not selected");
-      setTimeout(() => { setError('') }, 5000);
+      setError("File not selected");
+      setTimeout(() => { setError('') }, 2500);
       return;
     }
     if ((file.size / (1024 * 1024)) > fileLimit) {
-      setError(`file too large, try uploading a file less than ${fileLimit} MB`);
+      setError(`File too Large, Try uploading a file less than ${fileLimit} MB`);
       setTimeout(() => {
         setError("");
-      }, 5000);
+      }, 2500);
       return;
     }
     let uid = uuidv4();
@@ -92,26 +96,16 @@ function Upload({ userData }) {
   return (
     <div className="upload-btn">
       {error != '' ?
-        <Alert severity="error">{error}</Alert>
+        // <Alert severity="error">{error}</Alert>
+        <Error error={error}/>
         :
-        <Button
-          color="secondary"
-          variant="outlined"
-          component="label"
-          size="large"
-          startIcon={<MovieIcon />}
-        >
-          Upload Video
-          <input hidden accept="video/*" type="file" onChange={handleChange} />
-        </Button>
+        <IconButton color="primary" aria-label="upload picture" component="label">
+              <input hidden accept="video/*" type="file" onChange={handleChange}/>
+              <AddIcon fontSize="large" className="nav-icons" />
+            </IconButton>
       }
       {loading &&
-        <LinearProgress
-          color="secondary"
-          variant="determinate"
-          value={progress}
-          sx={{ mt: "0.2rem" }}
-        />
+        <Progress progress={progress}/>
       }
     </div>
   );

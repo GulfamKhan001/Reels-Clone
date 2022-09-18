@@ -54,7 +54,8 @@ function Feed() {
   useEffect(() => {
     const elements = document.querySelectorAll(".videos-container");
     let elem=elements[0].childNodes;
-    console.log("Hyee",elements);
+    console.log("Hyee",elem);
+  
     elem.forEach((e) => { console.log("hello",e.childNodes[1]);
       observer.observe(e); 
     });
@@ -62,11 +63,11 @@ function Feed() {
     return () => {
       observer.disconnect();
     };
-  },[])
+  },[posts])
   return (
     <div className="feed-container">
       <Navbar userData={userData}/>
-      <Upload userData={userData}/>
+      {/* <Upload userData={userData} */}
       <div className="videos-container">
       {
           posts.map((post) => <Post postData={post} userData = { userData } />)

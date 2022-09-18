@@ -21,7 +21,10 @@ function DisplayComments({ postData }) {
   return (
     <div>
       {allComments == null ? (
-        <CircularProgress color="success" />
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <CircularProgress color="success" />
+        </div>
+        
       ) : (
         <>
           {allComments.map((commentObj) => {

@@ -1,10 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Navbar from './Navbar'
-import Image from 'next/image';
-import user from '../assets/avatar.png'
+import React, { useContext,useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import Image from "next/image";
+import user from "../assets/avatar.png";
 import { AuthContext } from "../context/auth";
-import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import {
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
+import { db } from "../firebase";
 function Profile() {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState({});
@@ -22,12 +25,13 @@ function Profile() {
   }, [user]);
 
   useEffect(() => {
-    let tempArr = [];
+    let temp = [];
     postIds.map(pid => {
       const unsub = onSnapshot(doc(db, "posts", pid), (doc) => {
-        tempArr.push(doc.data());
-        setUserPosts([...tempArr]);
-        console.log("hello",tempArr);
+        temp.push(doc.data());
+        console.log(temp);
+        setUserPosts([...temp]);
+        console.log("hello",temp);
       });
     })
   }, [postIds]);
@@ -37,7 +41,7 @@ function Profile() {
       <div className="profile">
         <div className="profile-intro">
           <div className= "profile-Pic" style={{height:"8rem", width:"8rem",clipPath: "circle(50%)"}}>
-            <Image layout="fill" src={userData.downloadURL}/>
+            <Image layout="fill" src={userData.downloadURL} style={{height:"8rem", width:"8rem"}}/>
           </div>
           <div>
             <h1>{userData.fullName}</h1>

@@ -15,15 +15,17 @@ import AdbIcon from "@mui/icons-material/Adb";
 import insta from '../assets/instagram.svg'
 import Image from 'next/image'
 import HomeIcon from "@mui/icons-material/Home";
-import ExploreIcon from "@mui/icons-material/Explore";
+import AddIcon from '@mui/icons-material/Add';
+// import IconButton from '@mui/material/IconButton';
 import { AuthContext } from "../context/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Logout"];
+import Upload from "./Upload";
 
-const ResponsiveAppBar = ({userData}) => {
-  
+const ResponsiveAppBar = ({ userData }) => {
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logout } = React.useContext(AuthContext);
@@ -46,10 +48,10 @@ const ResponsiveAppBar = ({userData}) => {
     await logout();
     router.push('/login');
   }
-
+// style={{}}
   return (
-    <AppBar position="static" className="navbar">
-      <Container maxWidth="l">
+    <AppBar position="static" className="navbar" sx={{bgcolor: 'white'}}>
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -62,7 +64,7 @@ const ResponsiveAppBar = ({userData}) => {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-        
+
               textDecoration: "none",
             }}
           >
@@ -82,8 +84,10 @@ const ResponsiveAppBar = ({userData}) => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }} className="nav-icons-container">
-            <HomeIcon fontSize="large" className="nav-icons" />
-            <ExploreIcon fontSize="large" className="nav-icons" />
+            <Link href='/'>
+              <HomeIcon fontSize="large" className="nav-icons" />
+            </Link>
+            <Upload userData={userData}/>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
@@ -110,7 +114,7 @@ const ResponsiveAppBar = ({userData}) => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-              <Link href='/profile'>
+                <Link href='/profile'>
                   <Typography textAlign="center">Profile</Typography>
                 </Link>
               </MenuItem>
