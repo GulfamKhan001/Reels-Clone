@@ -13,7 +13,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from 'firebase/firestore';
 
 
-function index() {
+function Index() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [fullName, setFullName] = React.useState("");
@@ -161,4 +161,4 @@ function index() {
   );
 }
 
-export default index
+export default Index
